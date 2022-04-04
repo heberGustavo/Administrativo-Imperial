@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AdministrativoImperial.Domain;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -37,7 +38,7 @@ namespace AdministrativoImperial.Portal.Utils
 
             if (usuario != null)
             {
-                usuario.senha = "";
+                usuario.Senha = "";
                 claims.Add(new Claim(PolicyKeys.USUARIO_LOGADO, JsonConvert.SerializeObject(usuario)));
             }
 
