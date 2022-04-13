@@ -1,4 +1,18 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+    AtivarTelaAtual();
+});
 
-// Write your JavaScript code.
+function AtivarTelaAtual() {
+    //Verifica URL Atual
+    var urlAtual = location.href.split('/').pop();
+
+    $('#sidenav-collapse-main a.nav-link').each(function (index, element) {
+
+        var nomeTela = $(this).find('.nome-tela').text().replace(' ', '');
+
+        if (urlAtual == nomeTela) {
+            var ativar = this;
+            $(ativar).addClass('active')
+        }
+    });
+}
