@@ -8,11 +8,13 @@ function AtivarTelaAtual() {
 
     $('#sidenav-collapse-main a.nav-link').each(function (index, element) {
 
-        var nomeTela = $(this).find('.nome-tela').text().replace(' ', '');
+        var nomePaginaAtiva = $('.nome-pagina-ativa');
+        var nomeTelaNav = $(this).find('.nome-tela').text();
 
-        if (urlAtual == nomeTela) {
+        if (urlAtual == nomeTelaNav.replace(' ', '')) {
             var ativar = this;
             $(ativar).addClass('active')
+            $(nomePaginaAtiva).text(nomeTelaNav)
         }
     });
 }
