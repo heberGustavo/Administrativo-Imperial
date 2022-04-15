@@ -1,3 +1,7 @@
 ﻿.titulo-lista{
     display: inline-block !important;
 }
+
+.navbar-vertical.navbar-expand-xs{
+    z-index: 1020;
+}
