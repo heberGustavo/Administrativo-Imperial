@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <None Remove="Scripts\202204150936_CREATE_TABLE_FUNCAO_FUNCIONARIO_E_TABLE_FUNCIONARIO.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\202204150936_CREATE_TABLE_FUNCAO_FUNCIONARIO_E_TABLE_FUNCIONARIO.sql" />
   </ItemGroup>
 
   <ItemGroup>
