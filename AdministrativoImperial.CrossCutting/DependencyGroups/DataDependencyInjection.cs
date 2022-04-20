@@ -1,4 +1,6 @@
 ﻿using AdministrativoImperial.Data;
+using AdministrativoImperial.Data.Repository;
+using AdministrativoImperial.Domain.IRepository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AdministrativoImperial.CrossCutting.DependencyGroups
@@ -8,7 +10,7 @@ namespace AdministrativoImperial.CrossCutting.DependencyGroups
         public static void Register(IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<SqlDataContext, SqlDataContext>();
-            //serviceCollection.AddTransient<IFuncionarioArquivoRepository, FuncionarioArquivoRepository>();
+            serviceCollection.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
         }
     }
 }

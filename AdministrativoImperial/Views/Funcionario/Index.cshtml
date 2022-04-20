@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Funcionários";
+    @model IList<AdministrativoImperial.Domain.Models.EntityDomain.Funcionario>
 }
 
 <div class="container-fluid py-4">
@@ -12,7 +13,7 @@
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mt-2 mb-0">
+                        <table id="tabelaFuncionarios" class="table align-items-center mt-2 mb-0">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome</th>
@@ -24,110 +25,60 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-3 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">John Michael</h6>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-3 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@item.nome</h6>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 1000,00</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 100,00</p>
-                                    </td>
-                                    <td class="align-middletext-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-3 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">John Michael</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 1000,00</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 100,00</p>
-                                    </td>
-                                    <td class="align-middletext-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-3 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">John Michael</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 1000,00</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 100,00</p>
-                                    </td>
-                                    <td class="align-middletext-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-3 py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">John Michael</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 1000,00</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p class="text-xs font-weight-bold mb-0">R$ 100,00</p>
-                                    </td>
-                                    <td class="align-middletext-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">@item.id_funcao_funcionario</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                @if (item.mensal > 0)
+                                                {
+                                                    <span>@item.mensal.ToString("C")</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>-</span>
+                                                }
+                                            </p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                @if (item.diaria > 0)
+                                                {
+                                                    <span>@item.diaria.ToString("C")</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>-</span>
+                                                }
+                                            </p>
+                                        </td>
+                                        <td class="align-middletext-sm">
+                                            @if (item.excluido == false)
+                                            {
+                                                <span class="badge badge-sm bg-gradient-success">Ativo</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-sm bg-gradient-success">Desativo</span>
+                                            }
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -148,57 +99,14 @@
                         <p class="mb-0">Preencha os campos abaixo</p>
                     </div>
                     <div class="card-body pb-3">
-                        <form role="form" class="text-left">
-                            <label>Nome</label>
-                            <div class="input-group mb-3">
-                                <input id="nome" type="text" class="form-control" placeholder="Nome do Funcionário">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Selecione Função</label>
-                                <select class="form-control" id="selectFuncao">
-                                    <option>Selecione</option>
-                                    <option>Pedreiro</option>
-                                    <option>Servente</option>
-                                    <option>Pintor</option>
-                                    <option>Encanador</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div>
-                                <div class="form-check mb-3" style="display: inline-block">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadioDiaria" onclick="VerificaCheckClicado()">
-                                    <label class="custom-control-label" for="customRadioDiaria">Diária</label>
-                                </div>
-                                <div class="form-check" style="display: inline-block; margin-left: 10px">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadioMensal" onclick="VerificaCheckClicado()">
-                                    <label class="custom-control-label" for="customRadioMensal">Mensal</label>
-                                </div>
-                            </div>
-                            <div class="grupo">
-                                <div id="grupo-diaria" class="d-none">
-                                    <label>Diária</label>
-                                    <div class="input-group mb-3">
-                                        <input id="valorDiaria" type="text" class="form-control" placeholder="R$ 0,00">
-                                    </div>
-                                </div>
-                                <div id="grupo-mensal" class="d-none">
-                                    <label>Mensal</label>
-                                    <div class="input-group mb-3">
-                                        <input id="valorMensal" type="text" class="form-control" placeholder="R$ 0,00">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="example-date-input" class="form-control-label">Data de Contratação</label>
-                                <input id="dataContratacao" class="form-control" type="date">
-                            </div>
 
-                            <div class="text-center">
-                                <button type="button" class="btn bg-gradient-danger btn-lg btn-rounded w-100 mt-4 mb-0">Cancelar</button>
-                                <button type="button" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Salvar</button>
-                            </div>
+                        <partial name="_DadosFormulario" />
 
-                        </form>
+                        <div class="text-center">
+                            <button type="button" onclick="ModalFuncionarioFechar()" class="btn bg-gradient-danger btn-lg btn-rounded w-100 mt-4 mb-0">Cancelar</button>
+                            <button type="button" onclick="ModalFuncionarioSalvar()" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Salvar</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -207,3 +115,4 @@
 </div>
 
 <script src="~/js/Pages/Funcionario/index.js" asp-append-version="true"></script>
+<script src="~/js/Pages/Funcionario/salvar.js" asp-append-version="true"></script>

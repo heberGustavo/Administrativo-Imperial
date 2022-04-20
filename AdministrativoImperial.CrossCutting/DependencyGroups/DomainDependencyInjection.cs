@@ -1,4 +1,6 @@
-﻿using AdministrativoImperial.Domain.IBusiness.Migration;
+﻿using AdministrativoImperial.Domain.Business;
+using AdministrativoImperial.Domain.IBusiness;
+using AdministrativoImperial.Domain.IBusiness.Migration;
 using AdministrativoImperial.Migration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +12,7 @@ namespace AdministrativoImperial.CrossCutting.DependencyGroups
         {
             serviceCollection.AddTransient<IMigrationBusiness, MigrationBusiness>();
 
-            //serviceCollection.AddTransient<IFuncionarioArquivoBusiness, FuncionarioArquivoBusiness>();
+            serviceCollection.AddTransient<IFuncionarioBusiness, FuncionarioBusiness>();
         }
     }
 }

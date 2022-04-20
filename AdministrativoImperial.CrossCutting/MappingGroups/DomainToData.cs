@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AdministrativoImperial.Data.EntityData;
+using AdministrativoImperial.Domain.Models.EntityDomain;
+using AutoMapper;
 
 namespace AdministrativoImperial.CrossCutting.MappingGroups
 {
@@ -6,7 +8,7 @@ namespace AdministrativoImperial.CrossCutting.MappingGroups
     {
         public DomainToData()
         {
-            //CreateMap<TipoPlano, TipoPlanoData>();
+            CreateMap<Funcionario, FuncionarioData>();
         }
     }
 }

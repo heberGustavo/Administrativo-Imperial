@@ -15,7 +15,7 @@ CREATE TABLE dbo.Funcionario
 	id_funcionario INT IDENTITY(1,1) NOT NULL,
 	nome VARCHAR(40) NOT NULL,
 	id_funcao_funcionario int NOT NULL,
-	diaria decimal(5,2) NULL,
+	diaria decimal(8,2) NULL,
 	mensal decimal(8,2) NULL,
 	data_contratacao date NULL,
 	excluido bit NOT NULL DEFAULT 0,

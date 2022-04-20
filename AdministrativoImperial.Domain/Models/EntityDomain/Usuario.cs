@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdministrativoImperial.Domain
+namespace AdministrativoImperial.Domain.Models.EntityDomain
 {
     public class Usuario
     {

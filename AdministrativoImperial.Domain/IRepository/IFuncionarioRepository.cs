@@ -3,7 +3,7 @@ using AdministrativoImperial.Domain.Models.EntityDomain;
 
 namespace AdministrativoImperial.Domain.IRepository
 {
-    public interface IUsuarioRepository : IRepositoryBase<Usuario>
+    public interface IFuncionarioRepository : IRepositoryBase<Funcionario>
     {
     }
 }

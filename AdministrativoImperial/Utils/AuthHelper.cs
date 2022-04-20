@@ -1,4 +1,5 @@
 ﻿using AdministrativoImperial.Domain;
+using AdministrativoImperial.Domain.Models.EntityDomain;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;

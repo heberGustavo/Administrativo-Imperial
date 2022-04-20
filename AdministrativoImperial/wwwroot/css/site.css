@@ -5,3 +5,7 @@
 .navbar-vertical.navbar-expand-xs{
     z-index: 1020;
 }
+
+.text-danger{
+    font-size: 15px;
+}

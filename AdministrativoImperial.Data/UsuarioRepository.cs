@@ -1,6 +1,7 @@
 ﻿using AdministrativoImperial.Data.EntityData;
 using AdministrativoImperial.Domain;
 using AdministrativoImperial.Domain.IRepository;
+using AdministrativoImperial.Domain.Models.EntityDomain;
 using AutoMapper;
 
 namespace AdministrativoImperial.Data.Repository
