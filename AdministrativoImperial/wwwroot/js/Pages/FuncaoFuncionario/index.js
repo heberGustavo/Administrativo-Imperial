@@ -1,9 +1,5 @@
 ﻿var nome;
-var selectFuncao;
-var valorDiaria;
-var valorMensal;
-var dataContratacao;
-var tabelaFuncionario;
+var tabelaFuncao;
 
 $(document).ready(function () {
     InicializaVariaveis();
@@ -11,42 +7,11 @@ $(document).ready(function () {
 
 function InicializaVariaveis() {
     nome = $('#nome');
-    selectFuncao = $('#selectFuncao');
-    valorDiaria = $('#valorDiaria');
-    valorMensal = $('#valorMensal');
-    dataContratacao = $('#dataContratacao');
-    tabelaFuncionario = $('#tabelaFuncionarios tbody');
+    tabelaFuncao = $('#tabelaFuncao tbody');
 }
 
-function ModalFuncionario() {
-    $('#modalFuncionario').modal('show');
-}
-
-function VerificaCheckClicado() {
-
-    var selecionado = RetornaSelecionado();
-
-    var itemSelecionado = $(selecionado).attr('id')
-
-    if (itemSelecionado == 'customRadioDiaria') {
-        $('#grupo-diaria').removeClass('d-none');
-        $('#grupo-mensal').addClass('d-none');
-    }
-    else if (itemSelecionado == 'customRadioMensal') {
-        $('#grupo-mensal').removeClass('d-none');
-        $('#grupo-diaria').addClass('d-none');
-    }
-
-}
-
-function RetornaSelecionado() {
-    var item;
-
-    $('input[type=radio]:checked').each(function () {
-        item = this;
-    })
-
-    return item;
+function ModalFuncao() {
+    $('#modalFuncao').modal('show');
 }
 
 function VerificarCamposObrigatorios() {
@@ -54,28 +19,19 @@ function VerificarCamposObrigatorios() {
         MostrarModalErroCampoObrigatorioNaoPreenchido('Nome');
         return false;
     }
-    else if (IsNullOrEmpty(selectFuncao.val())) {
-        MostrarModalErroCampoObrigatorioNaoSelecionado('Função');
-        return false;
-    }
-    else if (IsNullOrEmpty(valorDiaria.val()) && IsNullOrEmpty(valorMensal.val())) {
-        MostrarModalErroCampoObrigatorioNaoSelecionado('');
-        swal("Atenção", "É necessário preencher valor de Diária ou Mensal", "error");
-        return false;
-    }
 
     return true;
 }
 
-function BuscarListaFuncionarios() {
+function BuscarListaFuncaoFuncionario() {
 
     $.ajax({
-        url: "/Funcionario/ObterTodosFuncionarios",
+        url: "/FuncaoFuncionario/ObterTodasFuncoes",
         type: "GET",
         contentType: 'application/json; charset=UTF-8',
         dataType: "json",
         success: function (response) {
-            PreencherTabelaFuncionarios(response);
+            PreencherTabelaFuncoes(response);
         },
         error: function (response) {
             console.log(response);
@@ -85,8 +41,8 @@ function BuscarListaFuncionarios() {
 
 }
 
-function PreencherTabelaFuncionarios(dados) {
-    tabelaFuncionario.html("");
+function PreencherTabelaFuncoes(dados) {
+    tabelaFuncao.html("");
 
     $(dados.resultado).each(function () {
         var linhaParte1;
@@ -101,27 +57,16 @@ function PreencherTabelaFuncionarios(dados) {
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">${this.id_funcao_funcionario}</p>
-                        </td>
-                        <td class="align-middle">
-                            <p class="text-xs font-weight-bold mb-0">R$ ${!IsNullOrEmpty(this.mensal) ? FormatDinheiro(ConverterParaFloat(this.mensal)) : ''} </p>
-                        </td>
-                        <td class="align-middle">
-                            <p class="text-xs font-weight-bold mb-0">R$ ${!IsNullOrEmpty(this.diaria) ? FormatDinheiro(ConverterParaFloat(this.diaria)) : ''}</p>
-                        </td>
                         <td class="align-middletext-sm">`
 
-                            if (this.excluido == false)
-                            {
-                                linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Ativo</span>`
-                            }
-                            else
-                            {
-                                linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Desativo</span>`
-                            }
+                        if (this.excluido == false) {
+                            linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Ativo</span>`
+                        }
+                        else {
+                            linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Desativo</span>`
+                        }
 
-                        linhaParte3 = 
+                        linhaParte3 =
                         `</td>
                         <td class="align-middle">
                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -130,6 +75,15 @@ function PreencherTabelaFuncionarios(dados) {
                         </td>
                     </tr>`;
 
-        tabelaFuncionario.append(linhaParte1 + linhaParte2 + linhaParte3)
+        tabelaFuncao.append(linhaParte1 + linhaParte2 + linhaParte3)
     });
+}
+
+function LimparCamposModal() {
+    nome.val('')
+}
+
+function ModalFuncaoFechar() {
+    LimparCamposModal();
+    AlterarVisibilidadeAtualModal('modalFuncao');
 }

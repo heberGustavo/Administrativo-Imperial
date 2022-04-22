@@ -7,8 +7,6 @@ function ModalFuncionarioSalvar() {
     if (VerificarCamposObrigatorios()) {
         var json = ObterDadosTelaJsonCadastrar();
 
-        console.log(json)
-
         $.ajax({
             url: "/Funcionario/Cadastrar",
             type: "POST",

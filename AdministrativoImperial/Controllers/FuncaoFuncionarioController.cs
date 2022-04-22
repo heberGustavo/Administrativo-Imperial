@@ -34,5 +34,13 @@ namespace AdministrativoImperial.Controllers
             return Json(new { erro = resultado.erro, mensagem = resultado.mensagem });
         }
 
+        [HttpGet]
+        [Route("[controller]/[action]")]
+        public async Task<JsonResult> ObterTodasFuncoes()
+        {
+            var resultado = await _funcaoFuncionarioBusiness.ObterCadastrados();
+            return Json(new { resultado });
+        }
+
     }
 }

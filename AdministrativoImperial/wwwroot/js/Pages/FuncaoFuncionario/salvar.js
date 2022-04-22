@@ -2,15 +2,13 @@
 
 });
 
-function ModalFuncionarioSalvar() {
+function ModalFuncaoSalvar() {
 
     if (VerificarCamposObrigatorios()) {
         var json = ObterDadosTelaJsonCadastrar();
 
-        console.log(json)
-
         $.ajax({
-            url: "/Funcionario/Cadastrar",
+            url: "/FuncaoFuncionario/Cadastrar",
             type: "POST",
             contentType: 'application/json; charset=UTF-8',
             dataType: "json",
@@ -19,7 +17,9 @@ function ModalFuncionarioSalvar() {
                 if (!response.erro) {
                     swal("Sucesso", response.mensagem, "success").then((confirm) => {
                         if (confirm) {
-                            BuscarListaFuncionarios();
+                            BuscarListaFuncaoFuncionario();
+                            LimparCamposModal();
+                            AlterarVisibilidadeAtualModal('modalFuncao');
                         }
                     });
                 }
@@ -37,25 +37,7 @@ function ModalFuncionarioSalvar() {
 }
 
 function ObterDadosTelaJsonCadastrar() {
-
-    var diariaFloat;
-    var mensalFloat;
-
-    if (!IsNullOrEmpty(valorDiaria.val()))
-        diariaFloat = ConverterParaFloat(valorDiaria.val());
-    else
-        diariaFloat = 0.0;
-
-    if (!IsNullOrEmpty(valorMensal.val()))
-        mensalFloat = ConverterParaFloat(valorMensal.val());
-    else
-        mensalFloat = 0.0;
-
     return {
         nome: nome.val(),
-        id_funcao_funcionario: parseInt(selectFuncao.val()),
-        diaria: diariaFloat,
-        mensal: mensalFloat,
-        data_contratacao: dataContratacao.val()
     }
 }
