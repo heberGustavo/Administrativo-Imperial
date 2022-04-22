@@ -20,6 +20,8 @@ function ModalFuncionarioSalvar() {
                     swal("Sucesso", response.mensagem, "success").then((confirm) => {
                         if (confirm) {
                             BuscarListaFuncionarios();
+                            LimparCamposModal();
+                            AlterarVisibilidadeAtualModal('modalFuncionario');
                         }
                     });
                 }

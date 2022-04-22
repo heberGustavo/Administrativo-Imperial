@@ -133,3 +133,16 @@ function PreencherTabelaFuncionarios(dados) {
         tabelaFuncionario.append(linhaParte1 + linhaParte2 + linhaParte3)
     });
 }
+
+function LimparCamposModal() {
+    nome.val('')
+    selectFuncao.val('0');
+    valorDiaria.val('')
+    valorMensal.val('')
+    dataContratacao.val('')
+}
+
+function ModalFuncionarioFechar() {
+    LimparCamposModal();
+    AlterarVisibilidadeAtualModal('modalFuncionario');
+}
