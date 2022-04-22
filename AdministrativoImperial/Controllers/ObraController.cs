@@ -11,7 +11,7 @@ namespace AdministrativoImperial.Controllers
 {
     public class ObraController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }

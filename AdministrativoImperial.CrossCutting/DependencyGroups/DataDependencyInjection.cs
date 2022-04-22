@@ -12,6 +12,7 @@ namespace AdministrativoImperial.CrossCutting.DependencyGroups
             serviceCollection.AddScoped<SqlDataContext, SqlDataContext>();
             serviceCollection.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
             serviceCollection.AddTransient<IFuncaoFuncionarioRepository, FuncaoFuncionarioRepository>();
+            serviceCollection.AddTransient<IObraRepository, ObraRepository>();
         }
     }
 }

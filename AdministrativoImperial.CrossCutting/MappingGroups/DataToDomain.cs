@@ -10,6 +10,7 @@ namespace AdministrativoImperial.CrossCutting.MappingGroups
         {
             CreateMap<FuncionarioData, Funcionario>();
             CreateMap<FuncaoFuncionarioData, FuncaoFuncionario>();
+            CreateMap<ObraData, Obra>();
         }
     }
 }
