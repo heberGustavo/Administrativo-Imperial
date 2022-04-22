@@ -12,5 +12,6 @@ namespace AdministrativoImperial.Domain.IBusiness
     {
         Task<IEnumerable<FuncaoFuncionario>> ObterCadastrados();
         Task<ResultResponseModel> Cadastrar(FuncaoFuncionario funcaoFuncionario);
+        Task<IEnumerable<FuncaoFuncionario>> ObterCadastradosAtivos();
     }
 }

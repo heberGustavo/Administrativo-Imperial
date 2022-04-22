@@ -63,7 +63,7 @@ function PreencherTabelaFuncoes(dados) {
                             linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Ativo</span>`
                         }
                         else {
-                            linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Desativo</span>`
+                            linhaParte2 = `<span class="badge badge-sm bg-gradient-secondary">Desativo</span>`
                         }
 
                         linhaParte3 =

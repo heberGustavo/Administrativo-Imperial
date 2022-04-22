@@ -21,7 +21,7 @@ namespace AdministrativoImperial.Domain.Business
         }
 
         public async Task<IEnumerable<FuncaoFuncionario>> ObterCadastrados()
-            => await _funcaoFuncionarioRepository.GetAllAsync();
+            => await _funcaoFuncionarioRepository.GetAllAsync(x => x.nome, y => y.excluido == true);
 
         public async Task<ResultResponseModel> Cadastrar(FuncaoFuncionario funcaoFuncionario)
         {
@@ -38,5 +38,8 @@ namespace AdministrativoImperial.Domain.Business
                 return new ResultResponseModel(true, "Erro ao cadastrar Função. Entre em contato com o Administrador.");
             }
         }
+
+        public async Task<IEnumerable<FuncaoFuncionario>> ObterCadastradosAtivos()
+            => await _funcaoFuncionarioRepository.GetAllAsync(x => x.excluido == false);
     }
 }

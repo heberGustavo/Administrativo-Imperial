@@ -118,7 +118,7 @@ function PreencherTabelaFuncionarios(dados) {
                             }
                             else
                             {
-                                linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Desativo</span>`
+                                linhaParte2 = `<span class="badge badge-sm bg-gradient-secondary">Desativo</span>`
                             }
 
                         linhaParte3 = 

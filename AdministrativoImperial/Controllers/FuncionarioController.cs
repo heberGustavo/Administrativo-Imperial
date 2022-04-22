@@ -14,14 +14,18 @@ namespace AdministrativoImperial.Controllers
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioBusiness _funcionarioBusiness;
+        private readonly IFuncaoFuncionarioBusiness _funcaoFuncionarioBusiness;
 
-        public FuncionarioController(IFuncionarioBusiness funcionarioBusiness)
+        public FuncionarioController(IFuncionarioBusiness funcionarioBusiness, IFuncaoFuncionarioBusiness funcaoFuncionarioBusiness)
         {
             _funcionarioBusiness = funcionarioBusiness;
+            _funcaoFuncionarioBusiness = funcaoFuncionarioBusiness;
         }
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.FuncaoFuncionario = await _funcaoFuncionarioBusiness.ObterCadastradosAtivos();
+
             var result = await _funcionarioBusiness.ObterCadastrados();
             return View(result);
         }

@@ -90,6 +90,7 @@ namespace AdministrativoImperial.Data.Repository
                 throw;
             }
         }
+
         public async Task<List<TDomain>> GetAllAsync(Func<TDomain, bool> whereExpression)
         {
             try
@@ -99,6 +100,80 @@ namespace AdministrativoImperial.Data.Repository
                 var result = _mapper.Map<List<TDomain>>(resultData.AsList());
 
                 return result.Where(whereExpression).ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public async Task<List<TDomain>> GetAllAsync(Func<TDomain, string> orderByExpression)
+        {
+            try
+            {
+                var resultData = await _dataContext.Connection.GetAllAsync<TData>();
+
+                var result = _mapper.Map<List<TDomain>>(resultData.AsList());
+
+                return result.OrderBy(orderByExpression).ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public async Task<List<TDomain>> GetAllAsync(Func<TDomain, string> orderByExpression1, Func<TDomain, bool> orderByExpression2)
+        {
+            try
+            {
+                var resultData = await _dataContext.Connection.GetAllAsync<TData>();
+
+                var result = _mapper.Map<List<TDomain>>(resultData.AsList());
+
+                return result.OrderBy(orderByExpression1)
+                             .OrderBy(orderByExpression2)
+                             .ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public async Task<List<TDomain>> GetAllAsync(Func<TDomain, bool> whereExpression, Func<TDomain, string> orderByExpression)
+        {
+            try
+            {
+                var resultData = await _dataContext.Connection.GetAllAsync<TData>();
+
+                var result = _mapper.Map<List<TDomain>>(resultData.AsList());
+
+                return result.Where(whereExpression)
+                              .OrderBy(orderByExpression)
+                              .ToList();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public async Task<List<TDomain>> GetAllAsync(Func<TDomain, bool> whereExpression, Func<TDomain, int> orderByExpression)
+        {
+            try
+            {
+                var resultData = await _dataContext.Connection.GetAllAsync<TData>();
+
+                var result = _mapper.Map<List<TDomain>>(resultData.AsList());
+
+                return result.Where(whereExpression)
+                              .OrderBy(orderByExpression)
+                              .ToList();
             }
             catch (Exception ex)
             {
