@@ -36,6 +36,6 @@ namespace AdministrativoImperial.Domain.Business
         }
 
         public async Task<IEnumerable<Funcionario>> ObterCadastrados()
-            => await _funcionarioRepository.GetAllAsync(x => x.nome, y => y.excluido == true);
+            => await _funcionarioRepository.ObterCadastrados();
     }
 }

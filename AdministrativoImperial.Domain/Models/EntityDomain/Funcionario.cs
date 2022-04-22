@@ -12,6 +12,7 @@ namespace AdministrativoImperial.Domain.Models.EntityDomain
         public decimal mensal { get; set; }
         public DateTime data_contratacao { get; set; }
         public int id_funcao_funcionario { get; set; }
+        public string nome_funcao { get; set; }
         public bool excluido { get; set; }
     }
 }
