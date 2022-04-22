@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Funcionários";
-    @model IList<AdministrativoImperial.Domain.Models.EntityDomain.Funcionario>
+    @model IList<AdministrativoImperial.Domain.Models.EntityDomain.FuncaoFuncionario>
 }
 
 <div class="container-fluid py-4">
@@ -8,18 +8,15 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6 class="titulo-lista">Lista de Funcionários</h6>
-                    <button class="btn btn-primary float-end" onclick="ModalFuncionario()">Cadastrar</button>
+                    <h6 class="titulo-lista">Lista Função de Funcionários</h6>
+                    <button class="btn btn-primary float-end" onclick="ModalFuncao()">Cadastrar</button>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table id="tabelaFuncionarios" class="table align-items-center mt-2 mb-0">
+                        <table id="tabelaFuncao" class="table align-items-center mt-2 mb-0">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">Função</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">Salário</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">Diária</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">Status</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">Ações</th>
                                 </tr>
@@ -34,33 +31,6 @@
                                                     <h6 class="mb-0 text-sm">@item.nome</h6>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">@item.id_funcao_funcionario</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <p class="text-xs font-weight-bold mb-0">
-                                                @if (item.mensal > 0)
-                                                {
-                                                    <span>@item.mensal.ToString("C")</span>
-                                                }
-                                                else
-                                                {
-                                                    <span>-</span>
-                                                }
-                                            </p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <p class="text-xs font-weight-bold mb-0">
-                                                @if (item.diaria > 0)
-                                                {
-                                                    <span>@item.diaria.ToString("C")</span>
-                                                }
-                                                else
-                                                {
-                                                    <span>-</span>
-                                                }
-                                            </p>
                                         </td>
                                         <td class="align-middletext-sm">
                                             @if (item.excluido == false)
@@ -88,14 +58,14 @@
     </div>
 </div>
 
-<!-- Modal Funcionario -->
-<div class="modal fade" id="modalFuncionario" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal Função -->
+<div class="modal fade" id="modalFuncao" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-body p-0">
                 <div class="card card-plain">
                     <div class="card-header pb-0 text-left">
-                        <h3 class="font-weight-bolder text-primary text-gradient">Cadastro de Funcionário</h3>
+                        <h3 class="font-weight-bolder text-primary text-gradient">Cadastro de Função</h3>
                         <p class="mb-0">Preencha os campos abaixo</p>
                     </div>
                     <div class="card-body pb-3">
@@ -103,8 +73,8 @@
                         <partial name="_DadosFormulario" />
 
                         <div class="text-center">
-                            <button type="button" onclick="ModalFuncionarioFechar()" class="btn bg-gradient-danger btn-lg btn-rounded w-100 mt-4 mb-0">Cancelar</button>
-                            <button type="button" onclick="ModalFuncionarioSalvar()" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Salvar</button>
+                            <button type="button" onclick="ModalFuncaoFechar()" class="btn bg-gradient-danger btn-lg btn-rounded w-100 mt-4 mb-0">Cancelar</button>
+                            <button type="button" onclick="ModalFuncaoSalvar()" class="btn bg-gradient-primary btn-lg btn-rounded w-100 mt-4 mb-0">Salvar</button>
                         </div>
 
                     </div>
@@ -114,5 +84,5 @@
     </div>
 </div>
 
-<script src="~/js/Pages/Funcionario/index.js" asp-append-version="true"></script>
-<script src="~/js/Pages/Funcionario/salvar.js" asp-append-version="true"></script>
+<script src="~/js/Pages/FuncaoFuncionario/index.js" asp-append-version="true"></script>
+<script src="~/js/Pages/FuncaoFuncionario/salvar.js" asp-append-version="true"></script>

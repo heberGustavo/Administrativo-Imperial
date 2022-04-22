@@ -13,6 +13,7 @@ namespace AdministrativoImperial.CrossCutting.DependencyGroups
             serviceCollection.AddTransient<IMigrationBusiness, MigrationBusiness>();
 
             serviceCollection.AddTransient<IFuncionarioBusiness, FuncionarioBusiness>();
+            serviceCollection.AddTransient<IFuncaoFuncionarioBusiness, FuncaoFuncionarioBusiness>();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace AdministrativoImperial.CrossCutting.MappingGroups
         public DataToDomain()
         {
             CreateMap<FuncionarioData, Funcionario>();
+            CreateMap<FuncaoFuncionarioData, FuncaoFuncionario>();
         }
     }
 }
