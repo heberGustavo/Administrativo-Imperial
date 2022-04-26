@@ -10,5 +10,7 @@ namespace AdministrativoImperial.Domain.IBusiness
 {
     public interface IObraBusiness : IBusinessBase<Obra>
     {
+        Task<ResultResponseModel> Cadastrar(Obra obra);
+        Task<IEnumerable<Obra>> ObterCadastrados();
     }
 }

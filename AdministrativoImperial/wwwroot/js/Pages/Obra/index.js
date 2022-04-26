@@ -1,81 +1,47 @@
-﻿var nome;
-var selectFuncao;
-var valorDiaria;
-var valorMensal;
-var dataContratacao;
-var tabelaFuncionario;
+﻿var dataInicio;
+var apelido;
+var endereco;
+var orcamento;
+var tabelaObra;
 
 $(document).ready(function () {
     InicializaVariaveis();
 });
 
 function InicializaVariaveis() {
-    nome = $('#nome');
-    selectFuncao = $('#selectFuncao');
-    valorDiaria = $('#valorDiaria');
-    valorMensal = $('#valorMensal');
-    dataContratacao = $('#dataContratacao');
-    tabelaFuncionario = $('#tabelaFuncionarios tbody');
+    dataInicio = $('#dataInicio');
+    apelido = $('#apelido');
+    endereco = $('#endereco');
+    orcamento = $('#orcamento');
+    tabelaObra = $('#tabelaObra tbody');
 }
 
-function ModalFuncionario() {
-    $('#modalFuncionario').modal('show');
-}
-
-function VerificaCheckClicado() {
-
-    var selecionado = RetornaSelecionado();
-
-    var itemSelecionado = $(selecionado).attr('id')
-
-    if (itemSelecionado == 'customRadioDiaria') {
-        $('#grupo-diaria').removeClass('d-none');
-        $('#grupo-mensal').addClass('d-none');
-    }
-    else if (itemSelecionado == 'customRadioMensal') {
-        $('#grupo-mensal').removeClass('d-none');
-        $('#grupo-diaria').addClass('d-none');
-    }
-
-}
-
-function RetornaSelecionado() {
-    var item;
-
-    $('input[type=radio]:checked').each(function () {
-        item = this;
-    })
-
-    return item;
+function ModalObra() {
+    $('#modalObra').modal('show');
 }
 
 function VerificarCamposObrigatorios() {
-    if (IsNullOrEmpty(nome.val())) {
-        MostrarModalErroCampoObrigatorioNaoPreenchido('Nome');
+    if (IsNullOrEmpty(dataInicio.val())) {
+        MostrarModalErroCampoObrigatorioNaoPreenchido('Data de Início');
         return false;
     }
-    else if (IsNullOrEmpty(selectFuncao.val())) {
-        MostrarModalErroCampoObrigatorioNaoSelecionado('Função');
-        return false;
-    }
-    else if (IsNullOrEmpty(valorDiaria.val()) && IsNullOrEmpty(valorMensal.val())) {
-        MostrarModalErroCampoObrigatorioNaoSelecionado('');
-        swal("Atenção", "É necessário preencher valor de Diária ou Mensal", "error");
+    else if (IsNullOrEmpty(apelido.val())) {
+        MostrarModalErroCampoObrigatorioNaoPreenchido('Apelido');
         return false;
     }
 
     return true;
 }
 
-function BuscarListaFuncionarios() {
+function BuscarListaObras() {
 
     $.ajax({
-        url: "/Funcionario/ObterTodosFuncionarios",
+        url: "/Obra/ObterTodasObras",
         type: "GET",
         contentType: 'application/json; charset=UTF-8',
         dataType: "json",
         success: function (response) {
-            PreencherTabelaFuncionarios(response);
+            PreencherTabelaObras(response);
         },
         error: function (response) {
             console.log(response);
@@ -92,57 +58,51 @@ function PreencherTabelaFuncionarios(dados) {
         var linhaParte1;
         var linhaParte2;
         var linhaParte3;
+        var linha;
 
-        linhaParte1 = `<tr>
-                        <td>
-                            <div class="d-flex px-3 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">${this.nome}</h6>
-                                </div>
+        console.log(dados)
+
+        return
+
+        linha = `<tr>
+                    <td>
+                        <div class="d-flex px-3 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">${this.nome}</h6>
                             </div>
-                        </td>
-                        <td>
-                            <p class="text-xs font-weight-bold mb-0">${this.id_funcao_funcionario}</p>
-                        </td>
-                        <td class="align-middle">
-                            <p class="text-xs font-weight-bold mb-0">R$ ${!IsNullOrEmpty(this.mensal) ? FormatDinheiro(ConverterParaFloat(this.mensal)) : ''} </p>
-                        </td>
-                        <td class="align-middle">
-                            <p class="text-xs font-weight-bold mb-0">R$ ${!IsNullOrEmpty(this.diaria) ? FormatDinheiro(ConverterParaFloat(this.diaria)) : ''}</p>
-                        </td>
-                        <td class="align-middletext-sm">`
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text-xs font-weight-bold mb-0">${this.data_inicio} - ${this.data_fim}</p>
+                    </td>
+                    <td class="align-middle">
+                        <p class="text-xs font-weight-bold mb-0">R$ ${FormatDinheiro(ConverterParaFloat(this.orcamento))}</p>
+                    </td>
+                    <td class="align-middle">
+                        <p class="text-xs font-weight-bold mb-0">R$ 000,00</p>
+                    </td>
+                    <td class="align-middletext-sm">
+                        <p class="text-xs font-weight-bold mb-0">R$ 000,00</p>
+                    </td>
+                    <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Edit
+                        </a>
+                    </td>
+                </tr>`
 
-                            if (this.excluido == false)
-                            {
-                                linhaParte2 = `<span class="badge badge-sm bg-gradient-success">Ativo</span>`
-                            }
-                            else
-                            {
-                                linhaParte2 = `<span class="badge badge-sm bg-gradient-secondary">Desativo</span>`
-                            }
-
-                        linhaParte3 = 
-                        `</td>
-                        <td class="align-middle">
-                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                Edit
-                            </a>
-                        </td>
-                    </tr>`;
-
-        tabelaFuncionario.append(linhaParte1 + linhaParte2 + linhaParte3)
+        tabelaFuncionario.append(linha);
     });
 }
 
 function LimparCamposModal() {
-    nome.val('')
-    selectFuncao.val('0');
-    valorDiaria.val('')
-    valorMensal.val('')
-    dataContratacao.val('')
+    dataInicio.val('')
+    apelido.val('')
+    endereco.val('')
+    orcamento.val('')
 }
 
-function ModalFuncionarioFechar() {
+function ModalObraFechar() {
     LimparCamposModal();
-    AlterarVisibilidadeAtualModal('modalFuncionario');
+    AlterarVisibilidadeAtualModal('modalObra');
 }

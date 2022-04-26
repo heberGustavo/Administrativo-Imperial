@@ -2,13 +2,13 @@
 
 });
 
-function ModalFuncionarioSalvar() {
+function ModalObraSalvar() {
 
     if (VerificarCamposObrigatorios()) {
         var json = ObterDadosTelaJsonCadastrar();
 
         $.ajax({
-            url: "/Funcionario/Cadastrar",
+            url: "/Obra/Cadastrar",
             type: "POST",
             contentType: 'application/json; charset=UTF-8',
             dataType: "json",
@@ -17,9 +17,9 @@ function ModalFuncionarioSalvar() {
                 if (!response.erro) {
                     swal("Sucesso", response.mensagem, "success").then((confirm) => {
                         if (confirm) {
-                            BuscarListaFuncionarios();
+                            BuscarListaObras();
                             LimparCamposModal();
-                            AlterarVisibilidadeAtualModal('modalFuncionario');
+                            AlterarVisibilidadeAtualModal('modalObra');
                         }
                     });
                 }
@@ -38,24 +38,17 @@ function ModalFuncionarioSalvar() {
 
 function ObterDadosTelaJsonCadastrar() {
 
-    var diariaFloat;
-    var mensalFloat;
+    var orcamentoFloat;
 
-    if (!IsNullOrEmpty(valorDiaria.val()))
-        diariaFloat = ConverterParaFloat(valorDiaria.val());
+    if (!IsNullOrEmpty(orcamento.val()))
+        orcamentoFloat = ConverterParaFloat(orcamento.val());
     else
-        diariaFloat = 0.0;
-
-    if (!IsNullOrEmpty(valorMensal.val()))
-        mensalFloat = ConverterParaFloat(valorMensal.val());
-    else
-        mensalFloat = 0.0;
+        orcamentoFloat = 0.0;
 
     return {
-        nome: nome.val(),
-        id_funcao_funcionario: parseInt(selectFuncao.val()),
-        diaria: diariaFloat,
-        mensal: mensalFloat,
-        data_contratacao: dataContratacao.val()
+        data_inicio: dataInicio.val(),
+        apelido: apelido.val(),
+        endereco: endereco.val(),
+        orcamento: orcamentoFloat
     }
 }

@@ -1,4 +1,5 @@
-﻿using AdministrativoImperial.Domain.Business.Base;
+﻿using AdministrativoImperial.Common;
+using AdministrativoImperial.Domain.Business.Base;
 using AdministrativoImperial.Domain.IBusiness;
 using AdministrativoImperial.Domain.IRepository;
 using AdministrativoImperial.Domain.Models.Common;
@@ -19,23 +20,25 @@ namespace AdministrativoImperial.Domain.Business
             _obraRepository = obraRepository;
         }
 
-        //public async Task<ResultResponseModel> Cadastrar(Funcionario funcioanrio)
-        //{
-        //    try
-        //    {
-        //        var idCadastrado = await _obraRepository.CreateAsync(funcioanrio);
-        //        if (idCadastrado > 0)
-        //            return new ResultResponseModel(false, "Funcionário cadastrado com sucesso!");
-        //        else
-        //            return new ResultResponseModel(true, "Erro ao cadastrar Funcionário. Tente novamente!");
-        //    }
-        //    catch(Exception e)
-        //    {
-        //        return new ResultResponseModel(true, "Erro ao cadastrar Funcionário. Entre em contato com o Administrador.");
-        //    }
-        //}
+        public async Task<ResultResponseModel> Cadastrar(Obra obra)
+        {
+            obra.data_fim = Convert.ToDateTime(DataDictionary.DATE_MIN);
 
-        //public async Task<IEnumerable<Funcionario>> ObterCadastrados()
-        //    => await _funcionarioRepository.ObterCadastrados();
+            try
+            {
+                var idCadastrado = await _obraRepository.CreateAsync(obra);
+                if (idCadastrado > 0)
+                    return new ResultResponseModel(false, "Obra cadastrada com sucesso!");
+                else
+                    return new ResultResponseModel(true, "Erro ao cadastrar Obra. Tente novamente!");
+            }
+            catch (Exception e)
+            {
+                return new ResultResponseModel(true, "Erro ao cadastrar Obra. Entre em contato com o Administrador.");
+            }
+        }
+
+        public async Task<IEnumerable<Obra>> ObterCadastrados()
+            => await _obraRepository.GetAllAsync();
     }
 }

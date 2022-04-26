@@ -1,4 +1,6 @@
-﻿using AdministrativoImperial.Models;
+﻿using AdministrativoImperial.Domain.IBusiness;
+using AdministrativoImperial.Domain.Models.EntityDomain;
+using AdministrativoImperial.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,10 +13,33 @@ namespace AdministrativoImperial.Controllers
 {
     public class ObraController : Controller
     {
-        public async Task<IActionResult> Index()
+        private readonly IObraBusiness _obraBusiness;
+
+        public ObraController(IObraBusiness obraBusiness)
         {
-            return View();
+            _obraBusiness = obraBusiness;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var result = await _obraBusiness.ObterCadastrados();
+            return View(result);
+        }
+
+        [HttpPost]
+        [Route("[controller]/[action]")]
+        public async Task<JsonResult> Cadastrar([FromBody] Obra obra)
+        {
+            var resultado = await _obraBusiness.Cadastrar(obra);
+            return Json(new { erro = resultado.erro, mensagem = resultado.mensagem });
+        }
+
+        [HttpGet]
+        [Route("[controller]/[action]")]
+        public async Task<JsonResult> ObterTodasObras()
+        {
+            var resultado = await _obraBusiness.ObterCadastrados();
+            return Json(new { resultado });
+        }
     }
 }
