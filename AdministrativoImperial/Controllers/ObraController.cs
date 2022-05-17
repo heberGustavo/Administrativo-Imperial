@@ -22,8 +22,14 @@ namespace AdministrativoImperial.Controllers
 
         public async Task<IActionResult> Index()
         {
+            return View();
+        }
+
+        [Route("[controller]/[action]")]
+        public async Task<ViewResult> Listar()
+        {
             var result = await _obraBusiness.ObterCadastrados();
-            return View(result);
+            return View("Listar", result);
         }
 
         [HttpPost]
