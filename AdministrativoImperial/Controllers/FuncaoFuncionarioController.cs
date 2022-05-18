@@ -1,4 +1,5 @@
 ﻿using AdministrativoImperial.Domain.IBusiness;
+using AdministrativoImperial.Domain.Models.Common;
 using AdministrativoImperial.Domain.Models.EntityDomain;
 using AdministrativoImperial.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,18 @@ namespace AdministrativoImperial.Controllers
             var resultado = await _funcaoFuncionarioBusiness.ObterCadastrados();
             return Json(new { resultado });
         }
+
+        //[HttpGet]
+        //[Route("[controller]/[action]/{nome}")]
+        //public async Task<JsonResult> VerificarFuncaoFuncionarioPorNome(string nome)
+        //{
+        //    var resultado = await _funcaoFuncionarioBusiness.VerificarFuncaoFuncionarioPorNome(nome);
+
+        //    if (resultado.Count() > 0)
+        //        return Json(new { mensagem = "Função já está cadastrada no sistema", cadastro = true });
+        //    else
+        //        return Json(new { mensagem = "Função não está cadastrada no sistema", cadastro = false });
+        //}
 
     }
 }

@@ -5,6 +5,7 @@
 function ModalFuncaoSalvar() {
 
     if (VerificarCamposObrigatorios()) {
+
         var json = ObterDadosTelaJsonCadastrar();
 
         $.ajax({

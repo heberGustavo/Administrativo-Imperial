@@ -41,5 +41,8 @@ namespace AdministrativoImperial.Domain.Business
 
         public async Task<IEnumerable<FuncaoFuncionario>> ObterCadastradosAtivos()
             => await _funcaoFuncionarioRepository.GetAllAsync(x => x.excluido == false);
+
+        public async Task<IEnumerable<FuncaoFuncionario>> VerificarFuncaoFuncionarioPorNome(string nome)
+            => await _funcaoFuncionarioRepository.GetAllAsync(x => x.nome == nome);
     }
 }
